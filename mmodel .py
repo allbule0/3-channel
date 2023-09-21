@@ -2,8 +2,10 @@
 from keras.layers import Input, Conv1D, BatchNormalization, MaxPooling1D, Flatten, Dense
 from keras.initializers import glorot_uniform
 from keras.models import Model
+import matplotlib.pyplot as plt
 
-
+inputshape =(1000,1)
+classnum = 2
 def mcnndep(inputshape, filterAg, classnum):
     x = Input(inputshape)
     inputs = x
@@ -40,4 +42,22 @@ def mcnndep(inputshape, filterAg, classnum):
 
     return Model(inputs=inputs, outputs=x, name="mcnndep")
 
+Model.summary()
 
+
+Model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=["accuracy"])
+conv_hist = Model.fit(x_train_mixed, y_train_new, batch_size=128, epochs=15, validation_data=(x_test_mixed,y_test_new))
+# x_train_mixed, y_train_new是训练集和训练标签；x_test_mixed,y_test_new是验证集和验证标签
+
+plt.figure(figsize=(20, 5))
+plt.subplot(1, 2, 1)
+plt.title("Convolution Loss")
+plt.plot(conv_hist.history["loss"], label="loss")
+plt.plot(conv_hist.history["val_loss"], label="val_loss")
+plt.legend()
+plt.subplot(1, 2, 2)
+plt.title("Convolution Accuracy")
+plt.plot(conv_hist.history["accuracy"], label="accuracy")
+plt.plot(conv_hist.history["val_accuracy"], label="val_accuracy")
+plt.legend()
+plt.show()
