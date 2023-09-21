@@ -5,6 +5,7 @@ from keras.models import Model
 import matplotlib.pyplot as plt
 
 inputshape =(1000,1)
+filterAg = {'cnn_l1': 32, 'cnn_l2': 64, 'cnn_l3': 128, 'cnn_l4': 256}
 classnum = 2
 def mcnndep(inputshape, filterAg, classnum):
     x = Input(inputshape)
@@ -42,12 +43,13 @@ def mcnndep(inputshape, filterAg, classnum):
 
     return Model(inputs=inputs, outputs=x, name="mcnndep")
 
-Model.summary()
 
+model = mcnndep(inputshape, filterAg, classnum)
+model.summary()
 
-Model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=["accuracy"])
-conv_hist = Model.fit(x_train_mixed, y_train_new, batch_size=128, epochs=15, validation_data=(x_test_mixed,y_test_new))
-# x_train_mixed, y_train_new是训练集和训练标签；x_test_mixed,y_test_new是验证集和验证标签
+model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=["accuracy"])
+conv_hist = model.fit(x_train_mixed, y_train_mixed, batch_size=128, epochs=50, validation_data=(x_test_mixed,y_test_mixed))
+# x_train_mixed, y_train_mixed是训练集和训练标签；x_test_mixed,y_test_mixed是验证集和验证标签
 
 plt.figure(figsize=(20, 5))
 plt.subplot(1, 2, 1)
