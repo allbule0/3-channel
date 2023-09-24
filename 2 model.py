@@ -63,3 +63,9 @@ plt.plot(conv_hist.history["accuracy"], label="accuracy")
 plt.plot(conv_hist.history["val_accuracy"], label="val_accuracy")
 plt.legend()
 plt.show()
+
+
+# 如果想改成指定某次训练的模型进行预测，可以修改成以下代码，但是会产生与训练次数对应的大量h5文件
+checkpoint = ModelCheckpoint("model_weights_epoch_{epoch:02d}.h5", save_best_only=False, verbose=1)
+specific_epoch = 19 # 指定要加载的训练周期
+model.load_weights(f"model_weights_epoch_{specific_epoch:02d}.h5")
