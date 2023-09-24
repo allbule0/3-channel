@@ -5,7 +5,7 @@ from keras.models import Model
 import matplotlib.pyplot as plt
 
 inputshape =(1000,1)
-filterAg = {'cnn_l1': 32, 'cnn_l2': 64, 'cnn_l3': 128, 'cnn_l4': 256}
+filterAg = {'cnn_l1': 32, 'cnn_l2': 64, 'cnn_l3': 64, 'cnn_l4': 128}
 classnum = 2
 def mcnndep(inputshape, filterAg, classnum):
     x = Input(inputshape)
