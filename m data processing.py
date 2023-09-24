@@ -1,3 +1,5 @@
+# 第一个版块，读取文件数据和数据初步处理
+
 from tensorflow import keras
 import numpy as np
 

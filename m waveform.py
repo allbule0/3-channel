@@ -1,3 +1,4 @@
+# 扩展版块：用于查看训练集样本的波形图
 
 import numpy as np
 import matplotlib.pyplot as plt
