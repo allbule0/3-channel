@@ -29,7 +29,7 @@ plt.show()
 
 signal_threshold = 0.540    # 预测直方图的谷值
 
-x_train_2 = sample2.reshape(sample2.shape[0], 1000, 1).astype(np.float32)   #  用于预测的新样本
+x_train_2 = sample2.reshape(sample2.shape[0], 1000, 1).astype(np.float32)   # 用于预测的新样本，可更改
 samples_predictions = model.predict(x_train_2)
 print(samples_predictions)
 print(samples_predictions.shape)
@@ -43,7 +43,7 @@ print('Signal proportion: {:.2f}%'.format(signal / len(Prediction_labels) * 100)
 print('Background proportion: {:.2f}%'.format(background / len(Prediction_labels) * 100))
 
 # 混淆矩阵 误差可视化
-cm = confusion_matrix(sample2_labels, Prediction_labels)  #  sample2_labels是填充电荷直方图划分的标签，具体见m lable.py文件
+cm = confusion_matrix(sample2_labels, Prediction_labels)  # sample2_labels是填充电荷直方图划分的标签，具体见m lable.py文件
 noise_acc = cm[0, 0] / np.sum(cm[0])
 signal_acc = cm[1, 1] / np.sum(cm[1])
 print('Noise accuracy:', noise_acc)
